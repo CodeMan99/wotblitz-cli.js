@@ -1,0 +1,38 @@
+{
+  "name": "wotblitz-cli",
+  "version": "1.0.0",
+  "description": "Command line interface for wotblitz.js.",
+  "bin": {
+    "wotblitz": "bin/wotblitz-cli.js"
+  },
+  "preferGlobal": true,
+  "scripts": {
+    "test": "tape test/*.js",
+    "lint": "eslint bin/*.js test/*.js"
+  },
+  "keywords": [
+    "blitz",
+    "tank",
+    "tanks",
+    "wargaming",
+    "wargaming.net",
+    "wot",
+    "wotblitz"
+  ],
+  "author": "Cody A. Taylor <codemister99@yahoo.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "github.com/CodeMan99/wotblitz-cli.js"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "opener2": "^2.0.1",
+    "os-homedir": "^1.0.2",
+    "wotblitz": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.8.1",
+    "tape": "^4.6.2"
+  }
+}
