@@ -23,8 +23,9 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "github.com/CodeMan99/wotblitz-cli.js"
+    "url": "https://github.com/CodeMan99/wotblitz-cli.js"
   },
+  "homepage": "https://github.com/CodeMan99/wotblitz-cli.js#readme",
   "dependencies": {
     "commander": "^2.9.0",
     "opener2": "^2.0.1",
