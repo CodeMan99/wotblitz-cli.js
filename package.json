@@ -8,7 +8,7 @@
   "preferGlobal": true,
   "scripts": {
     "test": "tape test/*.js",
-    "lint": "eslint bin/*.js test/*.js"
+    "lint": "eslint bin/*.js test/*.js lib/*.js"
   },
   "keywords": [
     "blitz",
@@ -33,7 +33,7 @@
     "wotblitz": "^1.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.8.1",
+    "eslint": "^3.9.0",
     "tape": "^4.6.2"
   }
 }
