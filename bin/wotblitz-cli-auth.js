@@ -8,7 +8,7 @@ var program = require('commander');
 var session = require('../lib/session.js');
 var url = require('url');
 var util = require('util');
-var wotblitz = require('wotblitz');
+var wotblitz = require('wotblitz')();
 
 if (require.main === module) {
 	main(

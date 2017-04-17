@@ -4,7 +4,7 @@ var logger = require('../lib/logger.js')({depth: 4});
 var program = require('commander');
 var session = require('../lib/session.js');
 var types = require('../lib/types.js');
-var wotblitz = require('wotblitz');
+var wotblitz = require('wotblitz')();
 
 if (require.main === module) {
 	main(

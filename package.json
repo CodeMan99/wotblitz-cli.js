@@ -1,6 +1,6 @@
 {
   "name": "wotblitz-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Command line interface for wotblitz.js.",
   "bin": {
     "wotblitz": "bin/wotblitz-cli.js"
@@ -30,10 +30,10 @@
     "commander": "^2.9.0",
     "opener2": "^2.0.1",
     "os-homedir": "^1.0.2",
-    "wotblitz": "^1.0.0"
+    "wotblitz": "^1.1.0"
   },
   "devDependencies": {
-    "eslint": "^3.9.0",
-    "tape": "^4.6.2"
+    "eslint": "^3.19.0",
+    "tape": "^4.6.3"
   }
 }
