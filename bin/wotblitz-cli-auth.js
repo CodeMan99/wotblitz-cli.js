@@ -45,6 +45,7 @@ function login(port, sess) {
 				'<body><h1>Login %s</h1><p>%s</p></html>';
 
 			delete authQuery[''];
+
 			switch (authQuery.status) {
 			case 'ok':
 				sess.account_id = authQuery.account_id;
@@ -76,7 +77,7 @@ function login(port, sess) {
 
 		getAuthQuery.listen(port);
 
-		wotblitz.auth.login('http:\/\/localhost:' + port, '1').then(data => {
+		wotblitz.auth.login('http://localhost:' + port, '1').then(data => {
 			var browser = opener(data.location);
 
 			childProcess.spawn(browser.command, browser.args, {
