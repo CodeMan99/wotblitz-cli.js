@@ -27,12 +27,12 @@
   },
   "homepage": "https://github.com/CodeMan99/wotblitz-cli.js#readme",
   "dependencies": {
-    "commander": "^2.11.0",
+    "commander": "^2.12.2",
     "opener2": "^2.0.1",
     "wotblitz": "^1.1.0"
   },
   "devDependencies": {
-    "eslint": "^4.5.0",
+    "eslint": "^4.13.0",
     "tape": "^4.8.0"
   }
 }
