@@ -2,7 +2,7 @@
 
 var childProcess = require('child_process');
 var http = require('http');
-var logger = require('../lib/logger.js')();
+var logger = require('../lib/logger.js');
 var opener = require('opener2');
 var program = require('commander');
 var session = require('../lib/session.js');

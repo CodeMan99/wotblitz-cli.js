@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var logger = require('../lib/logger.js')({depth: 3});
+var logger = require('../lib/logger.js').setOptions({depth: 3});
 var program = require('commander');
 var session = require('../lib/session.js');
 var types = require('../lib/types.js');

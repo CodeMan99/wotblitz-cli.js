@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var logger = require('../lib/logger.js')({depth: 4});
+var logger = require('../lib/logger.js').setOptions({depth: 4});
 var program = require('commander');
 var types = require('../lib/types.js');
 var wotblitz = require('wotblitz')();

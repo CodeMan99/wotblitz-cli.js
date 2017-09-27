@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var logger = require('../lib/logger.js')();
+var logger = require('../lib/logger.js');
 var wotblitz = require('wotblitz')();
 
 // hook up commander for the help chain
