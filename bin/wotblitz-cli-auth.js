@@ -7,19 +7,17 @@ var opener = require('opener2');
 var program = require('commander');
 var session = require('../lib/session.js');
 var url = require('url');
-var util = require('util');
 var wotblitz = require('wotblitz')();
 
 if (require.main === module) {
-	main(
-		program
-			.option('-l, --login', 'login with your wargaming account (endpoint)')
-			.option('-p, --prolongate', 'login will expire, extend it (endpoint)')
-			.option('-q, --logout', 'revoke your current login (endpoint)')
-			.option('-w, --when', 'get the date when the session expires')
-			.option('-P, --port <NUM>', 'set port number for login listening [default: 8000]', Number, 8000)
-			.parse(process.argv)
-	).then(logger.write).catch(logger.error);
+	main(program
+		.option('-l, --login', 'login with your wargaming account (endpoint)')
+		.option('-p, --prolongate', 'login will expire, extend it (endpoint)')
+		.option('-q, --logout', 'revoke your current login (endpoint)')
+		.option('-w, --when', 'get the date when the session expires')
+		.option('-P, --port <NUM>', 'set port number for login listening', Number, 0)
+		.parse(process.argv)
+	).then(logger.write, logger.error);
 }
 
 function main(opts) {
@@ -41,8 +39,17 @@ function login(port, sess) {
 		var getAuthQuery = http.createServer((req, res) => {
 			var authQuery = url.parse(req.url, true).query;
 			var html;
-			var template = '<!DOCTYPE html><html lang="en-US"><head><title>Login %s</title></head>' +
-				'<body><h1>Login %s</h1><p>%s</p></html>';
+			var template = (title, header, message) => `<!DOCTYPE html>
+				<html lang="en-US">
+					<head>
+						<title>Login ${title}</title>
+					</head>
+					<body>
+						<h1>Login ${header}</h1>
+						<p>${message}</p>
+					</body>
+				</html>
+			`;
 
 			delete authQuery[''];
 
@@ -52,14 +59,17 @@ function login(port, sess) {
 				sess.auth = authQuery;
 				sess.save().then(resolve, reject);
 
-				html = util.format(template, 'Successful', 'Successful', 'You may close this tab safely.');
+				html = template('Successful', 'Sucessful', 'You may close this tab safely.');
 				break;
 			case 'error':
-				reject(new Error(authQuery.message));
-				html = util.format(template, 'Failed', 'Failed: ' + authQuery.code, authQuery.message);
+				reject(Object.assign(new Error(), authQuery));
+				html = template('Failed', 'Failed: ' + authQuery.code, authQuery.message);
 				break;
 			default:
 				// maybe a favicon.ico request, toss it regardless
+				res.writeHead('404', 'Not Found');
+				res.end();
+
 				return;
 			}
 
@@ -75,18 +85,20 @@ function login(port, sess) {
 			getAuthQuery.close();
 		});
 
-		getAuthQuery.listen(port);
+		getAuthQuery.listen(port || 0, () => {
+			port = getAuthQuery.address().port;
 
-		wotblitz.auth.login('http://localhost:' + port, '1').then(data => {
-			var browser = opener(data.location);
+			wotblitz.auth.login('http://localhost:' + port, '1').then(data => {
+				var browser = opener(data.location);
 
-			childProcess.spawn(browser.command, browser.args, {
-				detached: true,
-				stdio: 'ignore'
-			}).unref();
-		}, reason => {
-			getAuthQuery.close();
-			reject(reason);
+				childProcess.spawn(browser.command, browser.args, {
+					detached: true,
+					stdio: 'ignore'
+				}).unref();
+			}, reason => {
+				getAuthQuery.close();
+				reject(reason);
+			});
 		});
 	});
 }
