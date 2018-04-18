@@ -1,6 +1,6 @@
 {
   "name": "wotblitz-cli",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Command line interface for wotblitz.js.",
   "bin": {
     "wotblitz-cli": "bin/wotblitz-cli.js"

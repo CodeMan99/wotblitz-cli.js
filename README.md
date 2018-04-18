@@ -1,4 +1,4 @@
-wotblitz-cli
+wotblitz-cli [![Build Status](https://travis-ci.org/CodeMan99/wotblitz-cli.js.svg?branch=master)](https://travis-ci.org/CodeMan99/wotblitz-cli.js)
 ============
 
 A simple command line utility for exporting the
